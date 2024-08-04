@@ -18,6 +18,19 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        'cursive': ['Brush Script MT', 'cursive'],
+        'handwriting': ['Caveat', 'cursive'],
+        'rounded': ['Varela Round', 'sans-serif'],
+        'tech': ['Share Tech Mono', 'monospace'],
+        'elegant': ['Cormorant Garamond', 'serif'],
+        'slab': ['Roboto Slab', 'serif'],
+        'decorative': ['Lobster', 'cursive'],
+        'nature': ['Naturalist', 'sans-serif'],
+        'romantic': ['Great Vibes', 'cursive'],
+        'industrial': ['Roboto Condensed', 'sans-serif'],
+      },
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

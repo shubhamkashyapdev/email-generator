@@ -67,3 +67,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+.novel-editor-content > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.novel-editor-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.novel-editor-content > * + * {
+  margin-top: 0; /* Adjust this value to control spacing between elements */
+}
+
+.novel-image-no-spacing {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+}
