@@ -9,133 +9,160 @@ import {
   TextIcon,
   Code,
   CheckSquare,
-  type LucideIcon
-} from 'lucide-react'
-import { EditorBubbleItem, EditorInstance, useEditor } from 'novel'
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  type LucideIcon,
+} from "lucide-react";
+import { EditorBubbleItem, EditorInstance, useEditor } from "novel";
 
-import { Popover } from '@radix-ui/react-popover'
-import { PopoverContent, PopoverTrigger } from '@/components//ui/popover'
-import { Button } from '@/components//ui/button'
+import { Popover } from "@radix-ui/react-popover";
+import { PopoverContent, PopoverTrigger } from "@/components//ui/popover";
+import { Button } from "@/components//ui/button";
 
 export type SelectorItem = {
-  name: string
-  icon: LucideIcon
-  command: (editor: EditorInstance) => void
-  isActive: (editor: EditorInstance) => boolean
-}
+  name: string;
+  icon: LucideIcon;
+  command: (editor: EditorInstance) => void;
+  isActive: (editor: EditorInstance) => boolean;
+};
 
 const items: SelectorItem[] = [
   {
-    name: 'Text',
+    name: "Text",
     icon: TextIcon,
-    command: editor => editor.chain().focus().clearNodes().run(),
-    // I feel like there has to be a more efficient way to do this – feel free to PR if you know how!
-    isActive: editor =>
-      editor.isActive('paragraph') &&
-      !editor.isActive('bulletList') &&
-      !editor.isActive('orderedList')
+    command: (editor) => editor.chain().focus().clearNodes().run(),
+    isActive: (editor) =>
+      editor.isActive("paragraph") &&
+      !editor.isActive("bulletList") &&
+      !editor.isActive("orderedList"),
   },
   {
-    name: 'Heading 1',
+    name: "Heading 1",
     icon: Heading1,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleHeading({ level: 1 }).run(),
-    isActive: editor => editor.isActive('heading', { level: 1 })
+    isActive: (editor) => editor.isActive("heading", { level: 1 }),
   },
   {
-    name: 'Heading 2',
+    name: "Heading 2",
     icon: Heading2,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleHeading({ level: 2 }).run(),
-    isActive: editor => editor.isActive('heading', { level: 2 })
+    isActive: (editor) => editor.isActive("heading", { level: 2 }),
   },
   {
-    name: 'Heading 3',
+    name: "Heading 3",
     icon: Heading3,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleHeading({ level: 3 }).run(),
-    isActive: editor => editor.isActive('heading', { level: 3 })
+    isActive: (editor) => editor.isActive("heading", { level: 3 }),
   },
   {
-    name: 'To-do List',
+    name: "To-do List",
     icon: CheckSquare,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleTaskList().run(),
-    isActive: editor => editor.isActive('taskItem')
+    isActive: (editor) => editor.isActive("taskItem"),
   },
   {
-    name: 'Bullet List',
+    name: "Bullet List",
     icon: ListOrdered,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleBulletList().run(),
-    isActive: editor => editor.isActive('bulletList')
+    isActive: (editor) => editor.isActive("bulletList"),
   },
   {
-    name: 'Numbered List',
+    name: "Numbered List",
     icon: ListOrdered,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleOrderedList().run(),
-    isActive: editor => editor.isActive('orderedList')
+    isActive: (editor) => editor.isActive("orderedList"),
   },
   {
-    name: 'Quote',
+    name: "Quote",
     icon: TextQuote,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleBlockquote().run(),
-    isActive: editor => editor.isActive('blockquote')
+    isActive: (editor) => editor.isActive("blockquote"),
   },
   {
-    name: 'Code',
+    name: "Code",
     icon: Code,
-    command: editor =>
+    command: (editor) =>
       editor.chain().focus().clearNodes().toggleCodeBlock().run(),
-    isActive: editor => editor.isActive('codeBlock')
-  }
-]
+    isActive: (editor) => editor.isActive("codeBlock"),
+  },
+  {
+    name: "Align Left",
+    icon: AlignLeft,
+    command: (editor) => editor.chain().focus().setTextAlign('left').run(),
+    isActive: (editor) => editor.isActive({ textAlign: 'left' }),
+  },
+  {
+    name: "Align Center",
+    icon: AlignCenter,
+    command: (editor) => editor.chain().focus().setTextAlign('center').run(),
+    isActive: (editor) => editor.isActive({ textAlign: 'center' }),
+  },
+  {
+    name: "Align Right",
+    icon: AlignRight,
+    command: (editor) => editor.chain().focus().setTextAlign('right').run(),
+    isActive: (editor) => editor.isActive({ textAlign: 'right' }),
+  },
+  {
+    name: "Justify",
+    icon: AlignJustify,
+    command: (editor) => editor.chain().focus().setTextAlign('justify').run(),
+    isActive: (editor) => editor.isActive({ textAlign: 'justify' }),
+  },
+];
+
 interface NodeSelectorProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
 export const NodeSelector = ({ open, onOpenChange }: NodeSelectorProps) => {
-  const { editor } = useEditor()
-  if (!editor) return null
+  const { editor } = useEditor();
+  if (!editor) return null;
 
-  const activeItem = items.filter(item => item.isActive(editor)).pop() ?? {
-    name: 'Multiple'
-  }
+  const activeItems = items.filter((item) => item.isActive(editor));
+  const activeItem = activeItems.length === 1 ? activeItems[0] : { name: "Multiple" };
 
   return (
     <Popover modal={true} open={open} onOpenChange={onOpenChange}>
       <PopoverTrigger
         asChild
-        className='gap-2 rounded-none border-none hover:bg-accent focus:ring-0'
+        className="gap-2 rounded-none border-none hover:bg-accent focus:ring-0"
       >
-        <Button size='sm' variant='ghost' className='gap-2'>
-          <span className='whitespace-nowrap text-sm'>{activeItem.name}</span>
-          <ChevronDown className='h-4 w-4' />
+        <Button size="sm" variant="ghost" className="gap-2">
+          <span className="whitespace-nowrap text-sm">{activeItem.name}</span>
+          <ChevronDown className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent sideOffset={5} align='start' className='w-48 p-1'>
+      <PopoverContent sideOffset={5} align="start" className="w-48 p-1">
         {items.map((item, index) => (
           <EditorBubbleItem
             key={index}
-            onSelect={editor => {
-              item.command(editor)
-              onOpenChange(false)
+            onSelect={(editor) => {
+              item.command(editor);
+              onOpenChange(false);
             }}
-            className='flex cursor-pointer items-center justify-between rounded-sm px-2 py-1 text-sm hover:bg-accent'
+            className="flex cursor-pointer items-center justify-between rounded-sm px-2 py-1 text-sm hover:bg-accent"
           >
-            <div className='flex items-center space-x-2'>
-              <div className='rounded-sm border p-1'>
-                <item.icon className='h-3 w-3' />
+            <div className="flex items-center space-x-2">
+              <div className="rounded-sm border p-1">
+                <item.icon className="h-3 w-3" />
               </div>
               <span>{item.name}</span>
             </div>
-            {activeItem.name === item.name && <Check className='h-4 w-4' />}
+            {activeItems.some(activeItem => activeItem.name === item.name) && <Check className="h-4 w-4" />}
           </EditorBubbleItem>
         ))}
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

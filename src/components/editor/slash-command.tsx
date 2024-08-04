@@ -1,6 +1,7 @@
 import {
   CheckSquare,
   Code,
+  Columns2,
   Heading1,
   Heading2,
   Heading3,
@@ -16,6 +17,20 @@ import { Command, renderItems } from 'novel/extensions'
 import { uploadFn } from './image-upload'
 
 export const suggestionItems = createSuggestionItems([
+  {
+    title: "Header",
+    description: "Add a header section",
+    searchTerms: ["header", "heading", "title"],
+    icon: <Columns2 size={18} />,
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode("header")
+        .run();
+    },
+  },
   {
     title: 'Send Feedback',
     description: 'Let us know how we can improve.',
