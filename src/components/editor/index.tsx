@@ -20,6 +20,7 @@ import { TextButtons } from "./selectors/text-buttons";
 import { uploadFn } from "./image-upload";
 import { slashCommand, suggestionItems } from "./slash-command";
 import { Separator } from "@/components/ui/separator";
+import { FontSizeSelector } from "./selectors/font-size-selector";
 
 const extensions = [...defaultExtensions, slashCommand];
 
@@ -33,6 +34,7 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
     const [openNode, setOpenNode] = useState(false);
     const [openColor, setOpenColor] = useState(false);
     const [openLink, setOpenLink] = useState(false);
+    console.log(ref)
 
     return (
       <EditorRoot>
@@ -89,7 +91,7 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
               tippyOptions={{
                 placement: "top",
               }}
-              className="flex w-[30vw] bg-blue-100 border border-blue-200 shadow-md rounded-md p-2"
+              className="flex w-[36vw] bg-blue-100 border border-blue-200 shadow-md rounded-md p-2"
             >
               <Separator orientation="vertical" className="border-blue-300" />
               <NodeSelector open={openNode} onOpenChange={setOpenNode} />
@@ -100,6 +102,7 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
               <Separator orientation="vertical" className="border-blue-300" />
               <Separator orientation="vertical" className="border-blue-300" />
               <ColorSelector open={openColor} onOpenChange={setOpenColor} />
+              <FontSizeSelector />
             </EditorBubble>
           </EditorContent>
         </div>

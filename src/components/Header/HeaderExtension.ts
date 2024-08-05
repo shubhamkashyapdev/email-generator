@@ -13,6 +13,20 @@ declare module "@tiptap/core" {
         backgroundImage?: string;
         logo?: string;
         companyName?: string;
+        settings?: {
+          logoSize: {
+            height: number,
+            width: number,
+          },
+          backgroundImageSize: number,
+          logoWrapper: {
+            direction: "row" | "column";
+            align: {
+              justify: "start" | "center" | "end";
+              align: "start" | "center" | "end";  
+            }
+          }
+        }
       }) => ReturnType;
     };
   }
@@ -54,6 +68,21 @@ export const HeaderExtension = Node.create<HeaderOptions>({
       companyName: {
         default: "Your Company Name",
       },
+      logoSize: {
+        default: 100,
+      },
+      backgroundImageSize: {
+        default: 300,
+      },
+      logoWrapper: {
+        default: {
+          direction: "row",
+          align: {
+            justify: "center",
+            align: "center",
+          },
+        },
+      },
     };
   },
 
@@ -68,7 +97,7 @@ export const HeaderExtension = Node.create<HeaderOptions>({
               ...this.options,
               ...options,
             },
-            content: [{ type: "text", text: "Your Company Name" }],
+            content: [{ type: "text", text: options.companyName || "Your Company Name" }],
           });
         },
     };
@@ -86,3 +115,5 @@ export const HeaderExtension = Node.create<HeaderOptions>({
 });
 
 export default HeaderExtension;
+
+

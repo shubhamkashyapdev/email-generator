@@ -16,7 +16,7 @@ import TextStyle from '@tiptap/extension-text-style'
 import Color from '@tiptap/extension-color'
 import {HeaderExtension} from "../Header/HeaderExtension";
 import { Extension } from '@tiptap/core'
-import FontSize from 'tiptap-extension-font-size'
+import {FontSize} from 'tiptap-extension-font-size'
 
 const aiHighlight = AIHighlight;
 const placeholder = Placeholder;
@@ -133,6 +133,10 @@ const textAlign = TextAlign.configure({
   defaultAlignment: 'left',
 })
 
+const fontSize = FontSize.configure({
+  types: ['textStyle'],
+})
+
 export const defaultExtensions = [
   starterKit,
   placeholder,
@@ -148,5 +152,5 @@ export const defaultExtensions = [
   Color,
   HeaderExtension,
   RemoveImageSpacing,
-  FontSize
+  fontSize
 ];

@@ -79,7 +79,7 @@
 }
 
 .novel-editor-content > * + * {
-  margin-top: 0; /* Adjust this value to control spacing between elements */
+  margin-top: 0; 
 }
 
 .novel-image-no-spacing {
