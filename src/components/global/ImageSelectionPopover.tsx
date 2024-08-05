@@ -1,5 +1,5 @@
 import React from "react";
-import { NodeViewContent } from "@tiptap/react";
+import { NodeViewContent } from "@tiptap/react"
 import {
   Popover,
   PopoverContent,
@@ -66,7 +66,7 @@ const ImageSelectionPopover = ({
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
             />
-            <Button onClick={() => handleImageChange(type, imageUrl)}>
+            <Button className="mt-2" onClick={() => handleImageChange(type, imageUrl)}>
               Set Image
             </Button>
           </TabsContent>
