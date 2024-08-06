@@ -1,6 +1,6 @@
 import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
-import HeaderExtensionComponent from "./HeaderComponent";
+import HeaderComponent from "./HeaderComponent";
 
 export interface HeaderOptions {
   HTMLAttributes: Record<string, any>;
@@ -110,7 +110,7 @@ export const HeaderExtension = Node.create<HeaderOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(HeaderExtensionComponent);
+    return ReactNodeViewRenderer(HeaderComponent);
   },
 });
 

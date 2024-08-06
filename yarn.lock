@@ -4316,7 +4316,7 @@ tiptap-extension-font-size@^1.2.0:
     "@tiptap/core" "^2.0.0-beta.116"
     "@tiptap/extension-text-style" "^2.0.0-beta.17"
 
-tiptap-extension-global-drag-handle@^0.1.7:
+tiptap-extension-global-drag-handle@^0.1.10, tiptap-extension-global-drag-handle@^0.1.7:
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/tiptap-extension-global-drag-handle/-/tiptap-extension-global-drag-handle-0.1.10.tgz#f0eb2d064a6a42859cae3ba370e7bc5423dfed68"
   integrity sha512-Bt6nzlQWp+Jw8ljvwO7dWqIgs2LupIzC6ar8SlXkfJ6MSGZ3+YMORrooSdbSysMlv2Zk1ypJc/kw/n9yGJMMEg==
