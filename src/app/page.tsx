@@ -20,7 +20,6 @@ const HomePage = () => {
 
       // @ts-ignore
       let html = editorRef.current.getHTML();
-
       // Remove contentEditable and other attributes that make the content editable
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');

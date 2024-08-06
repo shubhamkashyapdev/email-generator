@@ -161,7 +161,7 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
                   id="backgroundImageSize"
                   value={[backgroundImageSize]}
                   onValueChange={handleBackgroundImageSizeChange}
-                  min={120}
+                  min={130}
                   max={300}
                   step={1}
                 />
