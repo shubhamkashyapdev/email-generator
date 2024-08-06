@@ -27,7 +27,7 @@ export const suggestionItems = createSuggestionItems([
         .chain()
         .focus()
         .deleteRange(range)
-        .setNode("header")
+        .setNode("header", { draggable: true })
         .run();
     },
   },

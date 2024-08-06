@@ -34,14 +34,13 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
     const [openNode, setOpenNode] = useState(false);
     const [openColor, setOpenColor] = useState(false);
     const [openLink, setOpenLink] = useState(false);
-    console.log(ref)
 
     return (
       <EditorRoot>
         <div className="flex items-center justify-center">
           <EditorContent
             ref={ref}
-            className="min-h-[400px] rounded-lg border w-[500px] shadow-lg novel-editor-content"
+            className="min-h-[400px] max-h-[600px] rounded-lg border w-[500px] shadow-lg novel-editor-content"
             {...(initialValue && { initialContent: initialValue })}
             extensions={extensions}
             editorProps={{

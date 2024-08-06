@@ -13,8 +13,27 @@ const HomePage = () => {
 
   const downloadHTML = () => {
     if (editorRef.current) {
+      const settingsButtons = editorRef.current.querySelectorAll(".settings-icon");
+      settingsButtons.forEach((button) => {
+        (button as HTMLElement).style.display = "none";
+      });
+
       // @ts-ignore
-      const html = editorRef.current.getHTML();
+      let html = editorRef.current.getHTML();
+
+      // Remove contentEditable and other attributes that make the content editable
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const editableElements = doc.querySelectorAll('[contenteditable]');
+      editableElements.forEach((el) => {
+        el.removeAttribute('contenteditable');
+        el.removeAttribute('data-placeholder'); // Remove any additional attributes used for editing
+        el.classList.remove('ProseMirror'); // Remove any specific class names if needed
+      });
+
+      // Serialize the sanitized HTML
+      html = new XMLSerializer().serializeToString(doc);
+
       const blob = new Blob([html], { type: "text/html" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -24,6 +43,10 @@ const HomePage = () => {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+
+      settingsButtons.forEach((button) => {
+        (button as HTMLElement).style.display = "";
+      });
     }
   };
 

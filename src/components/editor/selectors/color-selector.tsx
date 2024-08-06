@@ -20,6 +20,10 @@ const TEXT_COLORS: BubbleColorMenuItem[] = [
     color: "var(--novel-black)",
   },
   {
+    name: "White",
+    color: "white",
+  },
+  {
     name: "Purple",
     color: "#9333EA",
   },
@@ -58,6 +62,7 @@ const BACKGROUND_COLORS: BubbleColorMenuItem[] = [
     name: "Default",
     color: "transparent",
   },
+ 
   {
     name: "Purple",
     color: "#F3E8FF",

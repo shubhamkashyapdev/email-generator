@@ -2,7 +2,12 @@ import React from "react";
 import { NodeViewWrapper, NodeViewContent } from "@tiptap/react";
 import Image from "next/image";
 import ImageSelectionPopover from "@/components/global/ImageSelectionPopover";
-import { Sheet, SheetContent, SheetOverlay, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetOverlay,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   Select,
   SelectContent,
@@ -114,6 +119,7 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
             <Button
               variant="ghost"
               size="icon"
+              className="settings-icon"
               style={{
                 position: "absolute",
                 top: "10px",
@@ -138,8 +144,8 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
                   id="logoSize"
                   value={[logoSize]}
                   onValueChange={handleLogoSizeChange}
-                  min={10}
-                  max={200}
+                  min={50}
+                  max={80}
                   step={1}
                 />
               </div>
@@ -155,8 +161,8 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
                   id="backgroundImageSize"
                   value={[backgroundImageSize]}
                   onValueChange={handleBackgroundImageSizeChange}
-                  min={10}
-                  max={200}
+                  min={120}
+                  max={300}
                   step={1}
                 />
               </div>
@@ -220,7 +226,6 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
             </div>
           </SheetContent>
           <SheetOverlay className="opacity-0" />
-
         </Sheet>
 
         <ImageSelectionPopover
@@ -241,6 +246,7 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
               backgroundPosition: "contain",
               padding: "20px",
               height: `${backgroundImageSize}px`,
+              minHeight: `${backgroundImageSize}px`,
               display: "flex",
               flexDirection: logoWrapper.direction,
               alignItems: logoWrapper.align.align,
@@ -264,17 +270,20 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
               <Image
                 src={logo}
                 alt="Company Logo"
-                objectFit="contain"
+                width={logoSize}
+                height={logoSize}
                 style={{
                   cursor: "pointer",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                  width: `${logoSize}px`,
+                  height: `${logoSize}px`,
+                  display: "block",
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
                   setOpenPopover("logo");
                 }}
-                height={logoSize}
-                width={logoSize}
-                className="rounded-full"
               />
             </ImageSelectionPopover>
             <NodeViewContent
