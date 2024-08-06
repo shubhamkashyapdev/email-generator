@@ -11,32 +11,33 @@ import {
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
 import { cx } from "class-variance-authority";
-import { TextAlign } from '@tiptap/extension-text-align';
-import TextStyle from '@tiptap/extension-text-style';
-import Color from '@tiptap/extension-color';
+import { TextAlign } from "@tiptap/extension-text-align";
+import TextStyle from "@tiptap/extension-text-style";
+import Color from "@tiptap/extension-color";
 import { HeaderExtension } from "../Header/HeaderExtension";
-import { Extension } from '@tiptap/core';
-import { FontSize } from 'tiptap-extension-font-size';
-import GlobalDragHandle from 'tiptap-extension-global-drag-handle';
+import { Extension } from "@tiptap/core";
+import { FontSize } from "tiptap-extension-font-size";
+import GlobalDragHandle from "tiptap-extension-global-drag-handle";
+import AutoJoiner from "tiptap-extension-auto-joiner"; // optional
 
 const aiHighlight = AIHighlight;
 const placeholder = Placeholder;
 
 const RemoveImageSpacing = Extension.create({
-  name: 'removeImageSpacing',
+  name: "removeImageSpacing",
 
   addGlobalAttributes() {
     return [
       {
-        types: ['image'],
+        types: ["image"],
         attributes: {
           class: {
-            default: 'novel-image-no-spacing',
+            default: "novel-image-no-spacing",
             rendered: true,
           },
         },
       },
-    ]
+    ];
   },
 });
 
@@ -130,23 +131,30 @@ const starterKit = StarterKit.configure({
 });
 
 const textAlign = TextAlign.configure({
-  types: ['heading', 'paragraph', 'header'],
-  alignments: ['left', 'center', 'right', 'justify'],
-  defaultAlignment: 'left',
+  types: ["heading", "paragraph", "header"],
+  alignments: ["left", "center", "right", "justify"],
+  defaultAlignment: "left",
 });
 
 const fontSize = FontSize.configure({
-  types: ['textStyle'],
+  types: ["textStyle"],
 });
 
 const draggable = GlobalDragHandle.configure({
   dragHandleWidth: 20,
-  scrollTreshold: 100, 
+  scrollTreshold: 100,
   dragHandleSelector: ".custom-drag-handle",
-  types: ['header', 'paragraph', 'heading', 'image'],
-})
+  types: ["header", "paragraph", "heading", "image"],
+});
 
 export const defaultExtensions = [
+  GlobalDragHandle.configure({
+    dragHandleWidth: 40, // default
+    scrollTreshold: 100, // default
+  }),
+  AutoJoiner.configure({
+    elementsToJoin: ["bulletList", "orderedList"], // default
+  }),
   starterKit,
   placeholder,
   tiptapLink,
@@ -162,5 +170,5 @@ export const defaultExtensions = [
   HeaderExtension,
   RemoveImageSpacing,
   fontSize,
-  draggable
+  draggable,
 ];
