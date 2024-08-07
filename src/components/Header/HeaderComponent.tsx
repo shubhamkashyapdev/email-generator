@@ -58,12 +58,12 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
     logoWrapper,
   } = node.attrs;
   const [openPopover, setOpenPopover] = React.useState<
-    "backgroundImage" | "logo" | null
+    "backgroundImage" | "logo" | "image1" | "image2" | null
   >(null);
   const [imageUrl, setImageUrl] = React.useState("");
 
   const handleImageChange = (
-    type: "backgroundImage" | "logo",
+    type: "backgroundImage" | "logo" | "image1" | "image2",
     newUrl: string
   ) => {
     updateAttributes({ [type]: newUrl });
@@ -73,7 +73,7 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
 
   const handleFileUpload = (
     e: React.ChangeEvent<HTMLInputElement>,
-    type: "backgroundImage" | "logo"
+    type: "backgroundImage" | "logo" | "image1" | "image2"
   ) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -227,7 +227,7 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
           </SheetContent>
           <SheetOverlay className="opacity-0" />
         </Sheet>
-
+        {/* @ts-ignore */}
         <ImageSelectionPopover
           type="backgroundImage"
           backgroundImage={backgroundImage}
@@ -256,6 +256,7 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
               cursor: "pointer",
             }}
           >
+            {/* @ts-ignore  */}
             <ImageSelectionPopover
               type="logo"
               backgroundImage={backgroundImage}
