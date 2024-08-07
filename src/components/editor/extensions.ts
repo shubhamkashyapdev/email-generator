@@ -15,10 +15,13 @@ import { TextAlign } from "@tiptap/extension-text-align";
 import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
 import { HeaderExtension } from "../Header/HeaderExtension";
+import { ColumnExtension } from "../Column/ColumnExtension";
+import { ButtonExtension } from "../Button/ButtonExtension";
 import { Extension } from "@tiptap/core";
 import { FontSize } from "tiptap-extension-font-size";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 import AutoJoiner from "tiptap-extension-auto-joiner"; // optional
+
 
 const aiHighlight = AIHighlight;
 const placeholder = Placeholder;
@@ -140,16 +143,9 @@ const fontSize = FontSize.configure({
   types: ["textStyle"],
 });
 
-const draggable = GlobalDragHandle.configure({
-  dragHandleWidth: 20,
-  scrollTreshold: 100,
-  dragHandleSelector: ".custom-drag-handle",
-  types: ["header", "paragraph", "heading", "image"],
-});
-
 export const defaultExtensions = [
   GlobalDragHandle.configure({
-    dragHandleWidth: 40, // default
+    dragHandleWidth: 20, // default
     scrollTreshold: 100, // default
   }),
   AutoJoiner.configure({
@@ -168,7 +164,8 @@ export const defaultExtensions = [
   TextStyle,
   Color,
   HeaderExtension,
+  ColumnExtension,
   RemoveImageSpacing,
   fontSize,
-  draggable,
+  ButtonExtension
 ];

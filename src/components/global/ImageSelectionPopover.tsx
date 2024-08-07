@@ -11,18 +11,20 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 type Props = {
-  type: "backgroundImage" | "logo";
+  type: "backgroundImage" | "logo" | "image1" | "image2";
   openPopover: string | null;
-  setOpenPopover: (type: "backgroundImage" | "logo" | null) => void;
+  setOpenPopover: (type: "backgroundImage" | "logo" | "image1" | "image2" | null) => void;
   logo: string;
   backgroundImage: string | null;
   imageUrl: string;
+  image1: string;
+  image2: string;
   setImageUrl: (url: string) => void;
   handleFileUpload: (
     e: React.ChangeEvent<HTMLInputElement>,
-    type: "backgroundImage" | "logo"
+    type: "backgroundImage" | "logo" | "image1" | "image2"
   ) => void;
-  handleImageChange: (type: "backgroundImage" | "logo", newUrl: string) => void;
+  handleImageChange: (type: "backgroundImage" | "logo" | "image1" | "image2", newUrl: string) => void;
   children: React.ReactNode;
 };
 

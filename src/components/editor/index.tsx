@@ -21,27 +21,63 @@ import { uploadFn } from "./image-upload";
 import { slashCommand, suggestionItems } from "./slash-command";
 import { Separator } from "@/components/ui/separator";
 import { FontSizeSelector } from "./selectors/font-size-selector";
+import { Monitor, Smartphone } from "lucide-react";
 
 const extensions = [...defaultExtensions, slashCommand];
+
+interface WidthToggleProps {
+  isDesktop: boolean;
+  setIsDesktop: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 interface EditorProp {
   initialValue?: JSONContent;
   onChange: (value: string) => void;
 }
 
+const WidthToggle: React.FC<WidthToggleProps> = ({
+  isDesktop,
+  setIsDesktop,
+}) => {
+  return (
+    <div className="flex items-center space-x-2 mb-4">
+      <button
+        onClick={() => setIsDesktop(true)}
+        className={`p-2 rounded-md ${
+          isDesktop ? "bg-blue-500 text-white" : "bg-gray-200"
+        }`}
+      >
+        <Monitor size={24} />
+      </button>
+      <button
+        onClick={() => setIsDesktop(false)}
+        className={`p-2 rounded-md ${
+          !isDesktop ? "bg-blue-500 text-white" : "bg-gray-200"
+        }`}
+      >
+        <Smartphone size={24} />
+      </button>
+    </div>
+  );
+};
+
 const Editor = forwardRef<HTMLDivElement, EditorProp>(
   ({ initialValue, onChange }, ref) => {
     const [openNode, setOpenNode] = useState(false);
     const [openColor, setOpenColor] = useState(false);
     const [openLink, setOpenLink] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true);
+
+    const editorWidth = isDesktop ? "w-[800px]" : "w-[375px]";
 
     return (
       <EditorRoot>
-        <div className="flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <WidthToggle isDesktop={isDesktop} setIsDesktop={setIsDesktop} />
           <EditorContent
             ref={ref}
-            className="min-h-[400px] max-h-[600px] rounded-lg border w-[500px] shadow-lg novel-editor-content"
-            {...(initialValue && { initialContent: initialValue })}
+            className={`min-h-[400px] max-h-[1200px] rounded-lg border ${editorWidth} shadow-md novel-editor-content`}
+            // {...(initialValue && { initialContent: initialValue })}
             extensions={extensions}
             editorProps={{
               handleDOMEvents: {

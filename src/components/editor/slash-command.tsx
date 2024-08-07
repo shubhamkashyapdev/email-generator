@@ -1,7 +1,9 @@
 import {
+  BluetoothConnectedIcon,
   CheckSquare,
   Code,
   Columns2,
+  CommandIcon,
   Heading1,
   Heading2,
   Heading3,
@@ -30,6 +32,34 @@ export const suggestionItems = createSuggestionItems([
         .setNode("header", { draggable: true })
         .run();
     },
+  },
+  {
+    title: "Column",
+    description: "Add a column layout",
+    searchTerms: ["column", "layout", "grid"],
+    icon: <Columns2 size={18} />,
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode("column", { count: 2, draggable: true })
+        .run();
+    },
+  },
+  {
+    title: 'Button',
+    description: 'Insert a button with customizable text and URL.',
+    searchTerms: ['button', 'cta', 'call to action'],
+    icon: <CommandIcon size={18} />, 
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode('button', { text: 'Click Me', url: '', visible: true })
+        .run();
+    }
   },
   {
     title: 'Send Feedback',
