@@ -1,26 +1,24 @@
 import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
-import ButtonComponent from "./ButtonComponent";
+import SocialComponent from "./SocialComponent";
 
-export interface ButtonOptions {
+export interface SocialOptions {
   HTMLAttributes: Record<string, any>;
 }
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
-    button: {
-      setButton: (options?: {
-        text?: string;
-        visible?: boolean;
-        url?: string;
-        alignment?: "left" | "center" | "right"; // Add alignment options
+    social: {
+      setSocial: (options?: {
+        icons?: { platform: string; url: string }[];
+        alignment?: "start" | "center" | "end";
       }) => ReturnType;
     };
   }
 }
 
-export const ButtonExtension = Node.create<ButtonOptions>({
-  name: "button",
+export const SocialExtension = Node.create<SocialOptions>({
+  name: "social",
 
   group: "block",
 
@@ -29,7 +27,7 @@ export const ButtonExtension = Node.create<ButtonOptions>({
   parseHTML() {
     return [
       {
-        tag: 'div[data-type="button"]',
+        tag: 'div[data-type="social"]',
       },
     ];
   },
@@ -38,7 +36,7 @@ export const ButtonExtension = Node.create<ButtonOptions>({
     return [
       "div",
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-        "data-type": "button",
+        "data-type": "social",
       }),
       0,
     ];
@@ -46,24 +44,22 @@ export const ButtonExtension = Node.create<ButtonOptions>({
 
   addAttributes() {
     return {
-      text: {
-        default: "Click me",
-      },
-      visible: {
-        default: true,
-      },
-      url: {
-        default: "",
+      icons: {
+        default: [
+          { platform: "instagram", url: "https://instagram.com" },
+          { platform: "facebook", url: "https://facebook.com" },
+          { platform: "youtube", url: "https://youtube.com" },
+        ],
       },
       alignment: {
-        default: "center", // Default alignment
+        default: "center",
       },
     };
   },
 
   addCommands() {
     return {
-      setButton:
+      setSocial:
         (options = {}) =>
         ({ commands }) => {
           return commands.insertContent({
@@ -79,8 +75,8 @@ export const ButtonExtension = Node.create<ButtonOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(ButtonComponent);
+    return ReactNodeViewRenderer(SocialComponent);
   },
 });
 
-export default ButtonExtension;
+export default SocialExtension;

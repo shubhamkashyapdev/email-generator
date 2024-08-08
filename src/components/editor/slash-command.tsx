@@ -62,6 +62,20 @@ export const suggestionItems = createSuggestionItems([
     }
   },
   {
+    title: 'Social Media',
+    description: 'Add social media icons',
+    searchTerms: ['social', 'cta', 'call to action'],
+    icon: <CommandIcon size={18} />, 
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode('social', { text: 'Click Me', url: '', visible: true })
+        .run();
+    }
+  },
+  {
     title: 'Send Feedback',
     description: 'Let us know how we can improve.',
     icon: <MessageSquarePlus size={18} />,

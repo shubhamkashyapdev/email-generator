@@ -9,6 +9,7 @@ interface ButtonAttributes {
   text: string;
   visible: boolean;
   url: string;
+  alignment: "left" | "center" | "right"; // Add alignment attribute
 }
 
 interface ButtonExtensionComponentProps {
@@ -22,7 +23,7 @@ const ButtonComponent: React.FC<ButtonExtensionComponentProps> = ({
   node,
   updateAttributes,
 }) => {
-  const { text, visible, url } = node.attrs;
+  const { text, visible, url, alignment } = node.attrs;
 
   const handleVisibilityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateAttributes({ visible: e.target.checked });
@@ -36,14 +37,16 @@ const ButtonComponent: React.FC<ButtonExtensionComponentProps> = ({
     updateAttributes({ url: e.target.value });
   };
 
+  const handleAlignmentChange = (value: "left" | "center" | "right") => {
+    updateAttributes({ alignment: value });
+  };
+
   return (
     <NodeViewWrapper>
       <div
         style={{
           position: "relative",
-          margin: 0,
-          padding: 0,
-          boxSizing: "border-box",
+          width: '100%', // Ensure full width for alignment to take effect
         }}
       >
         <Sheet>
@@ -105,6 +108,23 @@ const ButtonComponent: React.FC<ButtonExtensionComponentProps> = ({
                   placeholder="Enter URL"
                 />
               </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="buttonAlignment"
+                  className="block text-sm font-medium text-gray-700 mb-3"
+                >
+                  Button Alignment
+                </label>
+                <select
+                  id="buttonAlignment"
+                  value={alignment}
+                  onChange={(e) => handleAlignmentChange(e.target.value as "left" | "center" | "right")}
+                >
+                  <option value="left">Left</option>
+                  <option value="center">Center</option>
+                  <option value="right">Right</option>
+                </select>
+              </div>
             </div>
           </SheetContent>
           <SheetOverlay className="opacity-0" />
@@ -114,7 +134,7 @@ const ButtonComponent: React.FC<ButtonExtensionComponentProps> = ({
           <div
             style={{
               display: 'flex',
-              justifyContent: 'center',
+              justifyContent: alignment === "left" ? 'flex-start' : alignment === "right" ? 'flex-end' : 'center',
               margin: 0,
               padding: 0,
               boxSizing: "border-box",
@@ -129,7 +149,7 @@ const ButtonComponent: React.FC<ButtonExtensionComponentProps> = ({
               }}
               style={{
                 margin: 0,
-                padding: "10px",
+                padding: "20px",
                 boxSizing: "border-box",
               }}
             >

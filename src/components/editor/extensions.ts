@@ -17,6 +17,7 @@ import Color from "@tiptap/extension-color";
 import { HeaderExtension } from "../Header/HeaderExtension";
 import { ColumnExtension } from "../Column/ColumnExtension";
 import { ButtonExtension } from "../Button/ButtonExtension";
+import { SocialExtension } from "../Social/SocialExtension";
 import { Extension } from "@tiptap/core";
 import { FontSize } from "tiptap-extension-font-size";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
@@ -167,5 +168,6 @@ export const defaultExtensions = [
   ColumnExtension,
   RemoveImageSpacing,
   fontSize,
-  ButtonExtension
+  ButtonExtension,
+  SocialExtension,
 ];
