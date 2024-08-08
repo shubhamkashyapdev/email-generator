@@ -76,7 +76,7 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
           <WidthToggle isDesktop={isDesktop} setIsDesktop={setIsDesktop} />
           <EditorContent
             ref={ref}
-            className={`min-h-[400px] max-h-[1200px] rounded-lg border ${editorWidth} shadow-md novel-editor-content`}
+            className={`min-h-[400px] max-h-[1200px] rounded-lg border bg-pink-50 ${editorWidth} shadow-md novel-editor-content`}
             // {...(initialValue && { initialContent: initialValue })}
             extensions={extensions}
             editorProps={{
@@ -88,7 +88,7 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
               handleDrop: (view, event, _slice, moved) =>
                 handleImageDrop(view, event, moved, uploadFn),
               attributes: {
-                class: `p-5 prose prose-sm dark:prose-invert prose-headings:font-semibold focus:outline-none max-w-full prose-p:my-0 prose-headings:my-0`,
+                class: `prose prose-sm dark:prose-invert prose-headings:font-semibold focus:outline-none max-w-full prose-p:my-0 prose-headings:my-0`,
               },
             }}
             onUpdate={({ editor }) => {

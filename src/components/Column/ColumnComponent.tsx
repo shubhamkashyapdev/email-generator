@@ -68,14 +68,7 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
 
   return (
     <NodeViewWrapper>
-      <div
-        style={{
-          position: "relative",
-          margin: 0,
-          padding: 0,
-          boxSizing: "border-box",
-        }}
-      >
+      <div style={{ position: "relative", margin: 0, padding: 0, boxSizing: "border-box" }}>
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -107,7 +100,7 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
                   value={[imageSize.width]}
                   onValueChange={handleImageSizeChange}
                   min={50}
-                  max={300}
+                  max={500}
                   step={1}
                 />
               </div>
@@ -116,78 +109,108 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
           <SheetOverlay className="opacity-0" />
         </Sheet>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "10px",
-            // border: "1px solid #ccc",
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          {/* @ts-ignore  */}
-          <ImageSelectionPopover
-            type="image1"
-            openPopover={openPopover}
-            setOpenPopover={setOpenPopover}
-            imageUrl={imageUrl}
-            setImageUrl={setImageUrl}
-            handleFileUpload={handleFileUpload}
-            handleImageChange={handleImageChange}
-          >
-            <Image
-              src={image1}
-              alt="Image 1"
-              width={imageSize.width}
-              height={200}
+        <div style={{ display: "flex", justifyContent: "center", gap: "10px", margin: 0, padding: 0 }}>
+          <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {/* @ts-ignore */}
+            <ImageSelectionPopover
+              type="image1"
+              openPopover={openPopover}
+              setOpenPopover={setOpenPopover}
+              imageUrl={imageUrl}
+              setImageUrl={setImageUrl}
+              handleFileUpload={handleFileUpload}
+              handleImageChange={handleImageChange}
+            >
+              <Image
+                src={image1}
+                alt="Image 1"
+                width={imageSize.width}
+                height={200}
+                style={{
+                  cursor: "pointer",
+                  objectFit: "cover",
+                  minWidth: "150px",
+                  height: "200px",
+                  display: "block",
+                  margin: 0,
+                  boxSizing: "border-box",
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenPopover("image1");
+                }}
+              />
+            </ImageSelectionPopover>
+            <div
+              contentEditable
               style={{
-                cursor: "pointer",
-                objectFit: "cover",
-                minWidth: "150px",
-                height: "200px",
-                display: "block",
-                margin: 0,
-                boxSizing: "border-box",
+                position: "absolute",
+                color: "white",
+                textShadow: "0 0 3px black",
+                padding: "5px",
+                textAlign: "center",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                pointerEvents: "none",
               }}
-              onClick={(e) => {
-                e.stopPropagation();
-                setOpenPopover("image1");
-              }}
-            />
-          </ImageSelectionPopover>
-          {/* @ts-ignore  */}
-          <ImageSelectionPopover
-            type="image2"
-            setOpenPopover={setOpenPopover}
-            handleFileUpload={handleFileUpload}
-            handleImageChange={handleImageChange}
-            openPopover={openPopover}
-            imageUrl={imageUrl}
-            setImageUrl={setImageUrl}
-          >
-            <Image
-              src={image2}
-              alt="Image 2"
-              width={imageSize.width}
-              height={200}
+            >
+              <NodeViewContent />
+            </div>
+          </div>
+          <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {/* @ts-ignore */}
+            <ImageSelectionPopover
+              type="image2"
+              openPopover={openPopover}
+              setOpenPopover={setOpenPopover}
+              imageUrl={imageUrl}
+              setImageUrl={setImageUrl}
+              handleFileUpload={handleFileUpload}
+              handleImageChange={handleImageChange}
+            >
+              <Image
+                src={image2}
+                alt="Image 2"
+                width={imageSize.width}
+                height={200}
+                style={{
+                  cursor: "pointer",
+                  objectFit: "cover",
+                  minWidth: "150px",
+                  height: "200px",
+                  display: "block",
+                  margin: 0,
+                  boxSizing: "border-box",
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenPopover("image2");
+                }}
+              />
+            </ImageSelectionPopover>
+            <div
+              contentEditable
               style={{
-                cursor: "pointer",
-                objectFit: "cover",
-                minWidth: "150px",
-                height: "200px",
-                display: "block",
-                margin: 0,
-                boxSizing: "border-box",
+                position: "absolute",
+                color: "white",
+                textShadow: "0 0 3px black",
+                padding: "5px",
+                textAlign: "center",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                pointerEvents: "none",
               }}
-              onClick={(e) => {
-                e.stopPropagation();
-                setOpenPopover("image2");
-              }}
-            />
-          </ImageSelectionPopover>
+            >
+              <NodeViewContent />
+            </div>
+          </div>
         </div>
-        <NodeViewContent />
       </div>
     </NodeViewWrapper>
   );

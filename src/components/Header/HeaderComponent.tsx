@@ -245,6 +245,8 @@ const HeaderComponent: React.FC<HeaderExtensionComponentProps> = ({
               backgroundSize: "cover",
               backgroundPosition: "contain",
               padding: "20px",
+              maxWidth: "1000px",
+              margin: "0 auto 0 auto",
               height: `${backgroundImageSize}px`,
               minHeight: `${backgroundImageSize}px`,
               display: "flex",
