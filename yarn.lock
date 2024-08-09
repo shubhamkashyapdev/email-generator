@@ -107,6 +107,11 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.5.tgz#105c37d9d9620ce69b7f692a20c821bf1ad2cbf9"
   integrity sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==
 
+"@gocapsule/column-extension@^1.0.0-beta-3":
+  version "1.0.0-beta-3"
+  resolved "https://registry.yarnpkg.com/@gocapsule/column-extension/-/column-extension-1.0.0-beta-3.tgz#4fd51da71f19bd3372e556a6078f44e997cc6cf3"
+  integrity sha512-bvxbmfJS4Hgt25hfQHEU7QDdDxNtjgUXCsBsFqMES/gi1fAQJ2ZptyuEdBHPCAUG0Tuzd7X9beiitG69as/1FQ==
+
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.14.tgz#d78e481a039f7566ecc9660b4ea7fe6b1fec442b"

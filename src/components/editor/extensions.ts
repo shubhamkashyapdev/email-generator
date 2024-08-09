@@ -19,10 +19,10 @@ import { Extension } from "@tiptap/core";
 import { FontSize } from "tiptap-extension-font-size";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 import AutoJoiner from "tiptap-extension-auto-joiner"; // optional
-import HeaderExtension from "../template/Header/HeaderExtension";
-import ColumnExtension from "../template/Column/ColumnExtension";
-import ButtonExtension from "../template/Button/ButtonExtension";
-import SocialExtension from "../template/Social/SocialExtension";
+import HeaderExtension from "../Header/HeaderExtension";
+import ColumnExtension from "../Column/ColumnExtension";
+import ButtonExtension from "../Button/ButtonExtension";
+import SocialExtension from "../Social/SocialExtension";
 
 
 const aiHighlight = AIHighlight;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NodeViewWrapper, NodeViewContent } from "@tiptap/react";
 import { Sheet, SheetContent, SheetOverlay, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "../../ui/button";
+import { Button } from "../ui/button";
 import { Settings, Instagram, Facebook, Youtube } from "lucide-react";
-import { Input } from "../../ui/input";
+import { Input } from "../ui/input";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 interface SocialIcon {

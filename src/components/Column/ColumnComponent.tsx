@@ -8,11 +8,9 @@ import {
   SheetOverlay,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
 import { Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-
 
 interface ImageSize {
   height: number;
@@ -36,7 +34,6 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
   node,
   updateAttributes,
 }) => {
-  // Set default image size if not provided
   const defaultImageSize: ImageSize = {
     width: 500,
     height: 200,
@@ -73,7 +70,7 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
   };
 
   return (
-    <NodeViewWrapper>
+    <NodeViewWrapper contentEditable={false}>
       <div
         style={{
           position: "relative",
@@ -144,7 +141,7 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
               border: "1px solid #ccc",
             }}
           >
-         {/* @ts-ignore */}
+            {/* @ts-ignore  */}
             <ImageSelectionPopover
               type="image1"
               openPopover={openPopover}
@@ -175,6 +172,7 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
               />
             </ImageSelectionPopover>
           </div>
+
           <div
             style={{
               position: "relative",
@@ -188,7 +186,7 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
               border: "1px solid #ccc",
             }}
           >
-            {/* @ts-ignore */}
+            {/* @ts-ignore  */}
             <ImageSelectionPopover
               type="image2"
               openPopover={openPopover}
