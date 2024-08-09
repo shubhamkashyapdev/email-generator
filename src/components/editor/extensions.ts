@@ -14,18 +14,20 @@ import { cx } from "class-variance-authority";
 import { TextAlign } from "@tiptap/extension-text-align";
 import TextStyle from "@tiptap/extension-text-style";
 import Color from "@tiptap/extension-color";
-import { HeaderExtension } from "../Header/HeaderExtension";
-import { ColumnExtension } from "../Column/ColumnExtension";
-import { ButtonExtension } from "../Button/ButtonExtension";
-import { SocialExtension } from "../Social/SocialExtension";
+import { FontFamily } from '@tiptap/extension-font-family';
 import { Extension } from "@tiptap/core";
 import { FontSize } from "tiptap-extension-font-size";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 import AutoJoiner from "tiptap-extension-auto-joiner"; // optional
+import HeaderExtension from "../template/Header/HeaderExtension";
+import ColumnExtension from "../template/Column/ColumnExtension";
+import ButtonExtension from "../template/Button/ButtonExtension";
+import SocialExtension from "../template/Social/SocialExtension";
 
 
 const aiHighlight = AIHighlight;
 const placeholder = Placeholder;
+
 
 const RemoveImageSpacing = Extension.create({
   name: "removeImageSpacing",
@@ -144,6 +146,10 @@ const fontSize = FontSize.configure({
   types: ["textStyle"],
 });
 
+const fontFamily = FontFamily.configure({
+  types: ["textStyle"],
+});
+
 export const defaultExtensions = [
   GlobalDragHandle.configure({
     dragHandleWidth: 20, // default
@@ -168,6 +174,8 @@ export const defaultExtensions = [
   ColumnExtension,
   RemoveImageSpacing,
   fontSize,
+  fontFamily,
   ButtonExtension,
   SocialExtension,
+  
 ];

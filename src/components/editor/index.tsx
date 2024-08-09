@@ -22,6 +22,7 @@ import { slashCommand, suggestionItems } from "./slash-command";
 import { Separator } from "@/components/ui/separator";
 import { FontSizeSelector } from "./selectors/font-size-selector";
 import { Monitor, Smartphone } from "lucide-react";
+import { FontFamilySelector } from "./selectors/font-family-selector";
 
 const extensions = [...defaultExtensions, slashCommand];
 
@@ -126,7 +127,7 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
               tippyOptions={{
                 placement: "top",
               }}
-              className="flex w-[36vw] bg-blue-100 border border-blue-200 shadow-md rounded-md p-2"
+              className="flex w-[42vw] bg-gray-50 border border-blue-200 shadow-md rounded-md p-2"
             >
               <Separator orientation="vertical" className="border-blue-300" />
               <NodeSelector open={openNode} onOpenChange={setOpenNode} />
@@ -138,6 +139,7 @@ const Editor = forwardRef<HTMLDivElement, EditorProp>(
               <Separator orientation="vertical" className="border-blue-300" />
               <ColorSelector open={openColor} onOpenChange={setOpenColor} />
               <FontSizeSelector />
+              <FontFamilySelector />
             </EditorBubble>
           </EditorContent>
         </div>

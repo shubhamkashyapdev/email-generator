@@ -1,5 +1,5 @@
 import React from "react";
-import { NodeViewWrapper, NodeViewContent } from "@tiptap/react";
+import { NodeViewWrapper } from "@tiptap/react";
 import Image from "next/image";
 import ImageSelectionPopover from "@/components/global/ImageSelectionPopover";
 import {
@@ -8,9 +8,11 @@ import {
   SheetOverlay,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "../ui/button";
+
 import { Settings } from "lucide-react";
-import { Slider } from "../ui/slider";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
+
 
 interface ImageSize {
   height: number;
@@ -34,10 +36,14 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
   node,
   updateAttributes,
 }) => {
-  const { image1, image2, imageSize } = node.attrs;
-  const [openPopover, setOpenPopover] = React.useState<
-    "image1" | "image2" | "logo" | "backgroundImage" | null
-  >(null);
+  // Set default image size if not provided
+  const defaultImageSize: ImageSize = {
+    width: 500,
+    height: 200,
+  };
+  const { image1, image2, imageSize = defaultImageSize } = node.attrs;
+
+  const [openPopover, setOpenPopover] = React.useState<"image1" | "image2" | "logo" | "backgroundImage" | null>(null);
   const [imageUrl, setImageUrl] = React.useState("");
 
   const handleImageChange = (
@@ -68,7 +74,14 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
 
   return (
     <NodeViewWrapper>
-      <div style={{ position: "relative", margin: 0, padding: 0, boxSizing: "border-box" }}>
+      <div
+        style={{
+          position: "relative",
+          margin: 0,
+          padding: 0,
+          boxSizing: "border-box",
+        }}
+      >
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -109,9 +122,29 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
           <SheetOverlay className="opacity-0" />
         </Sheet>
 
-        <div style={{ display: "flex", justifyContent: "center", gap: "10px", margin: 0, padding: 0 }}>
-          <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            {/* @ts-ignore */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "10px",
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: imageSize.width,
+              height: 200,
+              overflow: "hidden",
+              border: "1px solid #ccc",
+            }}
+          >
+         {/* @ts-ignore */}
             <ImageSelectionPopover
               type="image1"
               openPopover={openPopover}
@@ -141,26 +174,20 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
                 }}
               />
             </ImageSelectionPopover>
-            <div
-              contentEditable
-              style={{
-                position: "absolute",
-                color: "white",
-                textShadow: "0 0 3px black",
-                padding: "5px",
-                textAlign: "center",
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                pointerEvents: "none",
-              }}
-            >
-              <NodeViewContent />
-            </div>
           </div>
-          <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: imageSize.width,
+              height: 200,
+              overflow: "hidden",
+              border: "1px solid #ccc",
+            }}
+          >
             {/* @ts-ignore */}
             <ImageSelectionPopover
               type="image2"
@@ -191,24 +218,6 @@ const ColumnComponent: React.FC<ColumnExtensionComponentProps> = ({
                 }}
               />
             </ImageSelectionPopover>
-            <div
-              contentEditable
-              style={{
-                position: "absolute",
-                color: "white",
-                textShadow: "0 0 3px black",
-                padding: "5px",
-                textAlign: "center",
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                pointerEvents: "none",
-              }}
-            >
-              <NodeViewContent />
-            </div>
           </div>
         </div>
       </div>

@@ -1,15 +1,16 @@
 import React from "react";
 import { NodeViewWrapper, NodeViewContent } from "@tiptap/react";
 import { Sheet, SheetContent, SheetOverlay, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Settings } from "lucide-react";
-import { Input } from "../ui/input";
+import { Input } from "../../ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 interface ButtonAttributes {
   text: string;
   visible: boolean;
   url: string;
-  alignment: "left" | "center" | "right"; // Add alignment attribute
+  alignment: "left" | "center" | "right";
 }
 
 interface ButtonExtensionComponentProps {
@@ -46,7 +47,7 @@ const ButtonComponent: React.FC<ButtonExtensionComponentProps> = ({
       <div
         style={{
           position: "relative",
-          width: '100%', // Ensure full width for alignment to take effect
+          width: '100%', 
         }}
       >
         <Sheet>
@@ -115,15 +116,16 @@ const ButtonComponent: React.FC<ButtonExtensionComponentProps> = ({
                 >
                   Button Alignment
                 </label>
-                <select
-                  id="buttonAlignment"
-                  value={alignment}
-                  onChange={(e) => handleAlignmentChange(e.target.value as "left" | "center" | "right")}
-                >
-                  <option value="left">Left</option>
-                  <option value="center">Center</option>
-                  <option value="right">Right</option>
-                </select>
+                <Select onValueChange={handleAlignmentChange} value={alignment}>
+                  <SelectTrigger aria-label="Alignment">
+                    <SelectValue placeholder="Select alignment" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="left">Left</SelectItem>
+                    <SelectItem value="center">Center</SelectItem>
+                    <SelectItem value="right">Right</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           </SheetContent>

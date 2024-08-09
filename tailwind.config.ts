@@ -29,6 +29,26 @@ const config = {
         'nature': ['Naturalist', 'sans-serif'],
         'romantic': ['Great Vibes', 'cursive'],
         'industrial': ['Roboto Condensed', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],  // Google Font
+        'open-sans': ['Open Sans', 'sans-serif'],  // Google Font
+        'lato': ['Lato', 'sans-serif'],  // Google Font
+        'montserrat': ['Montserrat', 'sans-serif'],  // Google Font
+        'source-sans': ['Source Sans Pro', 'sans-serif'],  // Google Font
+        'poppins': ['Poppins', 'sans-serif'],  // Google Font
+        'merriweather': ['Merriweather', 'serif'],  // Google Font
+        'playfair': ['Playfair Display', 'serif'],  // Google Font
+        'raleway': ['Raleway', 'sans-serif'],  // Google Font
+        'nunito': ['Nunito', 'sans-serif'],  // Google Font
+        'ubuntu': ['Ubuntu', 'sans-serif'],  // Google Font
+        'oswald': ['Oswald', 'sans-serif'],  // Google Font
+        'dancing-script': ['Dancing Script', 'cursive'],  // Google Font
+        'rubik': ['Rubik', 'sans-serif'],  // Google Font
+        'fira-sans': ['Fira Sans', 'sans-serif'],  // Google Font
+        'lora': ['Lora', 'serif'],  // Google Font
+        'karla': ['Karla', 'sans-serif'],  // Google Font
+        'quicksand': ['Quicksand', 'sans-serif'],  // Google Font
+        'inconsolata': ['Inconsolata', 'monospace'],  // Google Font
+        'pt-sans': ['PT Sans', 'sans-serif'],  // Google Font
       },
 
       colors: {

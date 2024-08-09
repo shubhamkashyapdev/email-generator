@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NodeViewWrapper, NodeViewContent } from "@tiptap/react";
 import { Sheet, SheetContent, SheetOverlay, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Settings, Instagram, Facebook, Youtube } from "lucide-react";
-import { Input } from "../ui/input";
+import { Input } from "../../ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 interface SocialIcon {
   platform: string;
@@ -37,12 +38,8 @@ const SocialComponent: React.FC<SocialComponentProps> = ({ node, updateAttribute
     setLocalIcons(newIcons);
   };
 
-  const handleAlignmentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setAlignment(e.target.value as "start" | "center" | "end");
-  };
-
-  const handleSave = () => {
-    updateAttributes({ icons: localIcons, alignment });
+  const handleAlignmentChange = (value: "start" | "center" | "end") => {
+    setAlignment(value);
   };
 
   const handleIconClick = (platform: string, url: string, e: React.MouseEvent) => {
@@ -107,16 +104,16 @@ const SocialComponent: React.FC<SocialComponentProps> = ({ node, updateAttribute
                 <label htmlFor="alignment" className="block text-sm font-medium text-gray-700 mb-2">
                   Alignment
                 </label>
-                <select
-                  id="alignment"
-                  value={alignment}
-                  onChange={handleAlignmentChange}
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                >
-                  <option value="start">Start</option>
-                  <option value="center">Center</option>
-                  <option value="end">End</option>
-                </select>
+                <Select onValueChange={handleAlignmentChange} value={alignment}>
+                  <SelectTrigger aria-label="Alignment">
+                    <SelectValue placeholder="Select alignment" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="start">Start</SelectItem>
+                    <SelectItem value="center">Center</SelectItem>
+                    <SelectItem value="end">End</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               {localIcons.map((icon, index) => (
                 <div key={index} className="mb-5">
@@ -136,7 +133,6 @@ const SocialComponent: React.FC<SocialComponentProps> = ({ node, updateAttribute
                   />
                 </div>
               ))}
-              <Button onClick={handleSave}>Save Changes</Button>
             </div>
           </SheetContent>
           <SheetOverlay className="opacity-0" />
