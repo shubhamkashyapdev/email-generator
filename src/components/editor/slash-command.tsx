@@ -12,11 +12,11 @@ import {
   ListOrdered,
   MessageSquarePlus,
   Text,
-  TextQuote
-} from 'lucide-react'
-import { createSuggestionItems } from 'novel/extensions'
-import { Command, renderItems } from 'novel/extensions'
-import { uploadFn } from './image-upload'
+  TextQuote,
+} from "lucide-react";
+import { createSuggestionItems } from "novel/extensions";
+import { Command, renderItems } from "novel/extensions";
+import { uploadFn } from "./image-upload";
 
 export const suggestionItems = createSuggestionItems([
   {
@@ -48,173 +48,182 @@ export const suggestionItems = createSuggestionItems([
     },
   },
   {
-    title: 'Button',
-    description: 'Insert a button with customizable text and URL.',
-    searchTerms: ['button', 'cta', 'call to action'],
-    icon: <CommandIcon size={18} />, 
+    title: "Two Column Card",
+    description: "Add a two column card layout",
+    searchTerms: ["column", "layout", "grid"],
+    icon: <Columns2 size={18} />,
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).setTwoColCard().run();
+    },
+  },
+  {
+    title: "Button",
+    description: "Insert a button with customizable text and URL.",
+    searchTerms: ["button", "cta", "call to action"],
+    icon: <CommandIcon size={18} />,
     command: ({ editor, range }) => {
       editor
         .chain()
         .focus()
         .deleteRange(range)
-        .setNode('button', { text: 'Click Me', url: '', visible: true })
+        .setNode("button", { text: "Click Me", url: "", visible: true })
         .run();
-    }
+    },
   },
   {
-    title: 'Social Media',
-    description: 'Add social media icons',
-    searchTerms: ['social', 'cta', 'call to action'],
-    icon: <CommandIcon size={18} />, 
+    title: "Social Media",
+    description: "Add social media icons",
+    searchTerms: ["social", "cta", "call to action"],
+    icon: <CommandIcon size={18} />,
     command: ({ editor, range }) => {
       editor
         .chain()
         .focus()
         .deleteRange(range)
-        .setNode('social', { text: 'Click Me', url: '', visible: true })
+        .setNode("social", { text: "Click Me", url: "", visible: true })
         .run();
-    }
+    },
   },
   {
-    title: 'Send Feedback',
-    description: 'Let us know how we can improve.',
+    title: "Send Feedback",
+    description: "Let us know how we can improve.",
     icon: <MessageSquarePlus size={18} />,
     command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).run()
-      window.open('/feedback', '_blank')
-    }
+      editor.chain().focus().deleteRange(range).run();
+      window.open("/feedback", "_blank");
+    },
   },
   {
-    title: 'Text',
-    description: 'Just start typing with plain text.',
-    searchTerms: ['p', 'paragraph'],
+    title: "Text",
+    description: "Just start typing with plain text.",
+    searchTerms: ["p", "paragraph"],
     icon: <Text size={18} />,
     command: ({ editor, range }) => {
       editor
         .chain()
         .focus()
         .deleteRange(range)
-        .toggleNode('paragraph', 'paragraph')
-        .run()
-    }
+        .toggleNode("paragraph", "paragraph")
+        .run();
+    },
   },
   {
-    title: 'To-do List',
-    description: 'Track tasks with a to-do list.',
-    searchTerms: ['todo', 'task', 'list', 'check', 'checkbox'],
+    title: "To-do List",
+    description: "Track tasks with a to-do list.",
+    searchTerms: ["todo", "task", "list", "check", "checkbox"],
     icon: <CheckSquare size={18} />,
     command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).toggleTaskList().run()
-    }
+      editor.chain().focus().deleteRange(range).toggleTaskList().run();
+    },
   },
   {
-    title: 'Heading 1',
-    description: 'Big section heading.',
-    searchTerms: ['title', 'big', 'large'],
+    title: "Heading 1",
+    description: "Big section heading.",
+    searchTerms: ["title", "big", "large"],
     icon: <Heading1 size={18} />,
     command: ({ editor, range }) => {
       editor
         .chain()
         .focus()
         .deleteRange(range)
-        .setNode('heading', { level: 1 })
-        .run()
-    }
+        .setNode("heading", { level: 1 })
+        .run();
+    },
   },
   {
-    title: 'Heading 2',
-    description: 'Medium section heading.',
-    searchTerms: ['subtitle', 'medium'],
+    title: "Heading 2",
+    description: "Medium section heading.",
+    searchTerms: ["subtitle", "medium"],
     icon: <Heading2 size={18} />,
     command: ({ editor, range }) => {
       editor
         .chain()
         .focus()
         .deleteRange(range)
-        .setNode('heading', { level: 2 })
-        .run()
-    }
+        .setNode("heading", { level: 2 })
+        .run();
+    },
   },
   {
-    title: 'Heading 3',
-    description: 'Small section heading.',
-    searchTerms: ['subtitle', 'small'],
+    title: "Heading 3",
+    description: "Small section heading.",
+    searchTerms: ["subtitle", "small"],
     icon: <Heading3 size={18} />,
     command: ({ editor, range }) => {
       editor
         .chain()
         .focus()
         .deleteRange(range)
-        .setNode('heading', { level: 3 })
-        .run()
-    }
+        .setNode("heading", { level: 3 })
+        .run();
+    },
   },
   {
-    title: 'Bullet List',
-    description: 'Create a simple bullet list.',
-    searchTerms: ['unordered', 'point'],
+    title: "Bullet List",
+    description: "Create a simple bullet list.",
+    searchTerms: ["unordered", "point"],
     icon: <List size={18} />,
     command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).toggleBulletList().run()
-    }
+      editor.chain().focus().deleteRange(range).toggleBulletList().run();
+    },
   },
   {
-    title: 'Numbered List',
-    description: 'Create a list with numbering.',
-    searchTerms: ['ordered'],
+    title: "Numbered List",
+    description: "Create a list with numbering.",
+    searchTerms: ["ordered"],
     icon: <ListOrdered size={18} />,
     command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).toggleOrderedList().run()
-    }
+      editor.chain().focus().deleteRange(range).toggleOrderedList().run();
+    },
   },
   {
-    title: 'Quote',
-    description: 'Capture a quote.',
-    searchTerms: ['blockquote'],
+    title: "Quote",
+    description: "Capture a quote.",
+    searchTerms: ["blockquote"],
     icon: <TextQuote size={18} />,
     command: ({ editor, range }) =>
       editor
         .chain()
         .focus()
         .deleteRange(range)
-        .toggleNode('paragraph', 'paragraph')
+        .toggleNode("paragraph", "paragraph")
         .toggleBlockquote()
-        .run()
+        .run(),
   },
   {
-    title: 'Code',
-    description: 'Capture a code snippet.',
-    searchTerms: ['codeblock'],
+    title: "Code",
+    description: "Capture a code snippet.",
+    searchTerms: ["codeblock"],
     icon: <Code size={18} />,
     command: ({ editor, range }) =>
-      editor.chain().focus().deleteRange(range).toggleCodeBlock().run()
+      editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
   },
   {
-    title: 'Image',
-    description: 'Upload an image from your computer.',
-    searchTerms: ['photo', 'picture', 'media'],
+    title: "Image",
+    description: "Upload an image from your computer.",
+    searchTerms: ["photo", "picture", "media"],
     icon: <ImageIcon size={18} />,
     command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).run()
+      editor.chain().focus().deleteRange(range).run();
       // upload image
-      const input = document.createElement('input')
-      input.type = 'file'
-      input.accept = 'image/*'
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
       input.onchange = async () => {
         if (input.files?.length) {
-          const file = input.files[0]
-          const pos = editor.view.state.selection.from
-          uploadFn(file, editor.view, pos)
+          const file = input.files[0];
+          const pos = editor.view.state.selection.from;
+          uploadFn(file, editor.view, pos);
         }
-      }
-      input.click()
-    }
-  }
-])
+      };
+      input.click();
+    },
+  },
+]);
 
 export const slashCommand = Command.configure({
   suggestion: {
     items: () => suggestionItems,
-    render: renderItems
-  }
-})
+    render: renderItems,
+  },
+});

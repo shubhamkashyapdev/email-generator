@@ -22,7 +22,11 @@ import { Extension } from "@tiptap/core";
 import { FontSize } from "tiptap-extension-font-size";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 import AutoJoiner from "tiptap-extension-auto-joiner"; // optional
-
+import {
+  TwoColCard,
+  ColumnLeft,
+  ColumnRight,
+} from "@/components/Column/two-column/card.extension";
 
 const aiHighlight = AIHighlight;
 const placeholder = Placeholder;
@@ -166,6 +170,9 @@ export const defaultExtensions = [
   Color,
   HeaderExtension,
   ColumnExtension,
+  TwoColCard,
+  ColumnLeft,
+  ColumnRight,
   RemoveImageSpacing,
   fontSize,
   ButtonExtension,
